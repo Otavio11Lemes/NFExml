@@ -13,27 +13,40 @@ wb = Workbook()
 ws = wb.active
 
 # Definir os cabeçalhos
-headers_nfe = ["cUF", "cNF", "natOp"]  # Adicione mais cabeçalhos conforme necessário
-headers_prot = ["nProt", "dhRecbto", "cStat", "xMotivo"]  # Adicione mais cabeçalhos conforme necessário
+headers_nfe = ["cUF", "cNF", "natOp"]  # cabeçalho nota
+headers_prot = ["nProt", "dhRecbto", "cStat", "xMotivo", "xNome"]  # cabeçalho remetente
 
 # Preencher o cabeçalho na primeira linha
 ws.append(headers_nfe + headers_prot)
 
 # Extrair dados da NF-e
 infNFe = root.find('.//nfe:NFe/nfe:infNFe', ns)
-cUF = infNFe.find('nfe:ide/nfe:cUF', ns).text
-cNF = infNFe.find('nfe:ide/nfe:cNF', ns).text
-natOp = infNFe.find('nfe:ide/nfe:natOp', ns).text
+if infNFe is not None:
+    cUF = infNFe.find('nfe:ide/nfe:cUF', ns).text if infNFe.find('nfe:ide/nfe:cUF', ns) is not None else ''
+    cNF = infNFe.find('nfe:ide/nfe:cNF', ns).text if infNFe.find('nfe:ide/nfe:cNF', ns) is not None else ''
+    natOp = infNFe.find('nfe:ide/nfe:natOp', ns).text if infNFe.find('nfe:ide/nfe:natOp', ns) is not None else ''
+else:
+    cUF, cNF, natOp = '', '', ''
 
 # Extrair dados do protocolo
 protNFe = root.find('.//nfe:protNFe', ns)
-nProt = protNFe.find('nfe:infProt/nfe:nProt', ns).text
-dhRecbto = protNFe.find('nfe:infProt/nfe:dhRecbto', ns).text
-cStat = protNFe.find('nfe:infProt/nfe:cStat', ns).text
-xMotivo = protNFe.find('nfe:infProt/nfe:xMotivo', ns).text
+if protNFe is not None:
+    nProt = protNFe.find('nfe:infProt/nfe:nProt', ns).text if protNFe.find('nfe:infProt/nfe:nProt', ns) is not None else ''
+    dhRecbto = protNFe.find('nfe:infProt/nfe:dhRecbto', ns).text if protNFe.find('nfe:infProt/nfe:dhRecbto', ns) is not None else ''
+    cStat = protNFe.find('nfe:infProt/nfe:cStat', ns).text if protNFe.find('nfe:infProt/nfe:cStat', ns) is not None else ''
+    xMotivo = protNFe.find('nfe:infProt/nfe:xMotivo', ns).text if protNFe.find('nfe:infProt/nfe:xMotivo', ns) is not None else ''
+else:
+    nProt, dhRecbto, cStat, xMotivo = '', '', '', ''
+
+# Extrair o nome do emitente (xNome) dentro do elemento emit
+emit = infNFe.find('nfe:emit', ns)
+if emit is not None:
+    xNome = emit.find('nfe:xNome', ns).text if emit.find('nfe:xNome', ns) is not None else ''
+else:
+    xNome = ''
 
 # Adicionar os dados à próxima linha
-ws.append([cUF, cNF, natOp, nProt, dhRecbto, cStat, xMotivo])
+ws.append([cUF, cNF, natOp, nProt, dhRecbto, cStat, xMotivo, xNome])
 
 # Salvar o arquivo
 wb.save("dados_nfe.xlsx")
