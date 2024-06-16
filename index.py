@@ -13,8 +13,8 @@ wb = Workbook()
 ws = wb.active
 
 # Definir os cabeçalhos
-headers_nfe = ["cUF", "cNF", "natOp"]  # cabeçalho nota
-headers_prot = ["nProt", "dhRecbto", "cStat", "xMotivo", "xNome"]  # cabeçalho remetente
+headers_prot = ["CNPJ", "fone", "xNome"]  # cabeçalho remetente
+headers_nfe = ["cEAN", "xProd", "NCM", "CEST", "CFOP", "uCom", "qCom", "vUnCom", "pPIS", "pICMS", "pIPI",  "pCOFINS"]  # cabeçalho produto
 
 # Preencher o cabeçalho na primeira linha
 ws.append(headers_nfe + headers_prot)
