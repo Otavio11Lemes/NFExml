@@ -1,7 +1,7 @@
 import psycopg2
 
 # Replace these with your actual database credentials
-dbname = 'postgres'
+dbname = 'mercadomoviments'
 user = 'postgres'
 password = '70207811'
 host = 'localhost'  # or your host address if different
