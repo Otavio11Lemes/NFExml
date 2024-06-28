@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map Columns</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Map Columns</h1>
+    <form action="/map_columns/{{ filename }}" method="POST">
+        <h2>Emitente</h2>
+        <label for="cnpj">CNPJ:</label>
+        <select id="cnpj" name="cnpj">
+            {% for column in columns %}
+                <option value="{{ column }}">{{ column }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="inscricao_estadual">Inscrição Estadual:</label>
+        <select id="inscricao_estadual" name="inscricao_estadual">
+            {% for column in columns %}
+                <option value="{{ column }}">{{ column }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="razao_social">Razão Social:</label>
+        <select id="razao_social" name="razao_social">
+            {% for column in columns %}
+                <option value="{{ column }}">{{ column }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="logradouro">Logradouro:</label>
+        <select id="logradouro" name="logradouro">
+            {% for column in columns %}
+                <option value="{{ column }}">{{ column }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="numero">Número:</label>
+        <select id="numero" name="numero">
+            {% for column in columns %}
+                <option value="{{ column }}">{{ column }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="bairro">Bairro:</label>
+        <select id="bairro" name="bairro">
+            {% for column in columns %}
+                <option value="{{ column }}">{{ column }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="municipio">Município:</label>
+        <select id="municipio" name="municipio">
+            {% for column in columns %}
+                <option value="{{ column }}">{{ column }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="uf">UF:</label>
+        <select id="uf" name="uf">
+            {% for column in columns %}
+                <option value="{{ column }}">{{ column }}</option>
+            {% endfor %}
+        </select><br>
+
+        <h2>Produto</h2>
+        <label for="cean">CEAN:</label>
+        <select id="cean" name="cean">
+            {% for column in columns %}
+                <option value="{{ column }}">{{ column }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="descricao">Descrição:</label>
+        <select id="descricao" name="descricao">
+            {% for column in columns %}
+                <option value="{{ column }}">{{ column }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="ncm">NCM:</label>
+        <select id="ncm" name="ncm">
+            {% for column in columns %}
+                <option value="{{ column }}">{{ column }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="cst">CST:</label>
+        <select id="cst" name="cst">
+            {% for column in columns %}
+                <option value="{{ column }}">{{ column }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="cfop">CFOP:</label>
+        <select id="cfop" name="cfop">
+            {% for column in columns %}
+                <option value="{{ column }}">{{ column }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="unidade">Unidade:</label>
+        <select id="unidade" name="unidade">
+            {% for column in columns %}
+                <option value="{{ column }}">{{ column }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="quantidade">Quantidade:</label>
+        <select id="quantidade" name="quantidade">
+            {% for column in columns %}
+                <option value="{{ column }}">{{ column }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="valor_unitario">Valor Unitário:</label>
+        <select id="valor_unitario" name="valor_unitario">
+            {% for column in columns %}
+                <option value="{{ column }}">{{ column }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="data">Data:</label>
+        <select id="data" name="data">
+            {% for column in columns %}
+                <option value="{{ column }}">{{ column }}</option>
+            {% endfor %}
+        </select><br>
+
+        <h2>Imposto</h2>
+        <label for="aliquota_icms">Alíquota ICMS:</label>
+        <select id="aliquota_icms" name="aliquota_icms">
+            {% for column in columns %}
+                <option value="{{ column }}">{{ column }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="aliquota_icms_st">Alíquota ICMS ST:</label>
+        <select id="aliquota_icms_st" name="aliquota_icms_st">
+            {% for column in columns %}
+                <option value="{{ column }}">{{ column }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="aliquota_ipi">Alíquota IPI:</label>
+        <select id="aliquota_ipi" name="aliquota_ipi">
+            {% for column in columns %}
+                <option value="{{ column }}">{{ column }}</option>
+            {% endfor %}
+        </select><br>
+
+        <button type="submit">Map Columns and Insert Data</button>
+    </form>
+</body>
+</html>

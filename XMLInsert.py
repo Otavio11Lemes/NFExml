@@ -18,7 +18,7 @@ def connect_db():
     return conn
 
 # Carregar o arquivo XML
-tree = ET.parse('./Xmls/52240602924249000119550020018676171243672280-nfe.xml')
+tree = ET.parse('./Xmls/NFE_0077779528_23.xml')
 root = tree.getroot()
 
 # Definir o namespace
