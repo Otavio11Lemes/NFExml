@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Dados</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Adicionar Dados</h1>
+    <form action="/add" method="POST">
+        <h2>Emitente</h2>
+        <label for="cnpj">CNPJ:</label>
+        <input type="text" id="cnpj" name="cnpj"><br>
+        <label for="inscricao_estadual">Inscrição Estadual:</label>
+        <input type="text" id="inscricao_estadual" name="inscricao_estadual"><br>
+        <label for="razao_social">Razão Social:</label>
+        <input type="text" id="razao_social" name="razao_social"><br>
+        <label for="logradouro">Logradouro:</label>
+        <input type="text" id="logradouro" name="logradouro"><br>
+        <label for="numero">Número:</label>
+        <input type="text" id="numero" name="numero"><br>
+        <label for="bairro">Bairro:</label>
+        <input type="text" id="bairro" name="bairro"><br>
+        <label for="municipio">Município:</label>
+        <input type="text" id="municipio" name="municipio"><br>
+        <label for="uf">UF:</label>
+        <input type="text" id="uf" name="uf"><br>
+
+        <h2>Produto</h2>
+        <label for="cean">CEAN:</label>
+        <input type="text" id="cean" name="cean"><br>
+        <label for="descricao">Descrição:</label>
+        <input type="text" id="descricao" name="descricao"><br>
+        <label for="ncm">NCM:</label>
+        <input type="text" id="ncm" name="ncm"><br>
+        <label for="cst">CST:</label>
+        <input type="text" id="cst" name="cst"><br>
+        <label for="cfop">CFOP:</label>
+        <input type="text" id="cfop" name="cfop"><br>
+        <label for="unidade">Unidade:</label>
+        <input type="text" id="unidade" name="unidade"><br>
+        <label for="quantidade">Quantidade:</label>
+        <input type="text" id="quantidade" name="quantidade"><br>
+        <label for="valor_unitario">Valor Unitário:</label>
+        <input type="text" id="valor_unitario" name="valor_unitario"><br>
+        <label for="data">Data:</label>
+        <input type="date" id="data" name="data"><br>
+
+        <h2>Imposto</h2>
+        <label for="aliquota_icms">Alíquota ICMS:</label>
+        <input type="text" id="aliquota_icms" name="aliquota_icms"><br>
+        <label for="aliquota_icms_st">Alíquota ICMS ST:</label>
+        <input type="text" id="aliquota_icms_st" name="aliquota_icms_st"><br>
+        <label for="aliquota_ipi">Alíquota IPI:</label>
+        <input type="text" id="aliquota_ipi" name="aliquota_ipi"><br>
+
+        <button type="submit">Adicionar</button>
+    </form>
+</body>
+</html>
