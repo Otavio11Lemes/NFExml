@@ -3,7 +3,7 @@ import psycopg2
 
 # Configurações do banco de dados
 DB_HOST = "localhost"
-DB_NAME = "mercadomoviments"
+DB_NAME = "nfexml"
 DB_USER = "postgres"
 DB_PASS = "70207811"
 
@@ -27,6 +27,7 @@ ns = {'nfe': 'http://www.portalfiscal.inf.br/nfe'}
 # Conectar ao banco de dados
 conn = connect_db()
 cur = conn.cursor()
+
 
 # Criar as tabelas, se não existirem
 cur.execute('''
@@ -63,6 +64,7 @@ cur.execute('''
         quantidade VARCHAR,
         valor_unitario VARCHAR,
         cnpj_emitente VARCHAR,
+        data DATE,
         FOREIGN KEY (cnpj_emitente) REFERENCES emitente(cnpj)
     )
 ''')
@@ -85,6 +87,9 @@ cur.execute('''
     ON CONFLICT (cnpj) DO NOTHING
 ''', (CNPJ, inscricao_estadual, razao_social, logradouro, numero, bairro, municipio, uf))
 
+# Extrair a data do XML
+data_emissao = root.find('.//nfe:ide/nfe:dhEmi', ns).text.split('T')[0]  # Assume que a data está no formato "AAAA-MM-DDTHH:MM:SS"
+
 # Extrair dados dos produtos e associar ao emitente
 for det in root.findall('.//nfe:det', ns):
     # Produto
@@ -99,9 +104,9 @@ for det in root.findall('.//nfe:det', ns):
 
     # Inserir dados do produto na tabela, associando ao emitente
     cur.execute('''
-        INSERT INTO produto (cean, descricao, ncm, cst, cfop, unidade, quantidade, valor_unitario, cnpj_emitente)
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
-    ''', (cEAN, descricao, ncm, cst, cfop, unidade, quantidade, valor_unitario, CNPJ))
+        INSERT INTO produto (cean, descricao, ncm, cst, cfop, unidade, quantidade, valor_unitario, cnpj_emitente, data)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+    ''', (cEAN, descricao, ncm, cst, cfop, unidade, quantidade, valor_unitario, CNPJ, data_emissao))
 
     # Impostos
     aliquota_ICMS = det.find('nfe:imposto/nfe:ICMS//nfe:pICMS', ns)
